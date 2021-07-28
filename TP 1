@@ -1,0 +1,131 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+
+void mostrarvec(int vec[], int dim);
+
+void mostrarmat(int m[][5], int dfil);
+
+void revertir(int vec[], int dim);
+
+void transpuesta(int mat[][5], int filas);
+
+int main()
+{
+    const int dim5 = 5;
+    const int dim10 = 10;
+
+    int vec5[dim5]={4, 11, 19, 8, 3};
+    int vec10[dim10]={23, 15, 1, 7, 6, 27, 2, 14, 12, 9};
+
+    int matriz[dim5][dim5]=
+    {36, 7, 19, 28, 45,
+    17, 33, 42, 3, 25,
+    22, 41, 32, 11, 9,
+    39, 47, 14, 4, 23,
+    16, 38, 8, 27, 44};
+                            
+    mostrarvec(vec5, dim5);
+    revertir(vec5, dim5);
+    cout<<endl;
+    
+    mostrarvec(vec10,dim10);
+    revertir(vec10, dim10);
+    cout<<endl;
+	
+    mostrarmat(matriz, dim5);
+    transpuesta(matriz, dim5);
+    cout<<endl; 
+    
+    system("pause");
+    return 0;
+}
+
+void mostrarvec(int vec[], int dim)
+{
+    cout<<"Vector de "<<dim<<": "<<endl;
+    for (int i = 0; i < dim; ++i)
+    {
+	cout << vec[i] <<" ";
+    }
+    cout<<endl;
+}
+
+void mostrarmat(int m[][5], int dfil)
+{
+    cout<<endl<<"\nMatriz: "<<endl;
+    const int dcol = 5; 
+
+    for (int i = 0; i < dfil; ++i) 
+    {
+        for (int j = 0; j < dcol; ++j)
+        {
+        cout << m[i][j] <<" ";
+        }
+        cout << endl;
+    }
+}
+
+void revertir(int vec[], int dim)
+{
+	int aux, i=0;
+	int dimp = dim-1;
+	
+	while(i<dimp)
+	{
+		aux=vec[i];
+		vec[i]=vec[dimp];
+		vec[dimp]=aux;
+		
+		i++; dimp--;
+	}
+	
+	cout<<"Reverso: "<<endl;
+	
+	for(int t=0; t<dim; t++)
+	{
+		cout<<vec[t]<<" ";
+	}
+
+}
+
+void transpuesta(int mat[][5], int filas)
+{
+	int aux;
+	
+	for(int i=0; i<filas; i++)
+	{
+		aux=mat[i][0];
+		mat[i][0]=mat[0][i];
+		mat[0][i]=aux;
+	}
+	for(int i=1; i<filas; i++)
+	{
+		aux=mat[i][1];
+		mat[i][1]=mat[1][i];
+		mat[1][i]=aux;
+	}
+	for(int i=2; i<filas; i++)
+	{
+		aux=mat[i][2];
+		mat[i][2]=mat[2][i];
+		mat[2][i]=aux;
+	}
+	for(int i=3; i<filas; i++)
+	{
+		aux=mat[i][3];
+		mat[i][3]=mat[3][i];
+		mat[3][i]=aux;
+	}
+	
+	cout<<endl<<"Matriz transpuesta: "<<endl;
+	
+	for(int i=0; i<filas; i++)
+	{
+		for(int j=0; j<5; j++)
+		{
+			cout<<mat[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+}
